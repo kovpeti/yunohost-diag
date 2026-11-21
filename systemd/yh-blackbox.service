@@ -1,0 +1,17 @@
+[Unit]
+Description=YunoHost fekete doboz — állapotpillanatkép
+Documentation=file:/usr/local/share/yunohost-diag/README.md
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/yh-blackbox.sh
+Nice=10
+IOSchedulingClass=idle
+# Semmilyen körülmények között ne akadjon be vagy fogyasszon sokat
+TimeoutStartSec=30
+MemoryMax=64M
+CPUQuota=20%
+
+[Install]
+WantedBy=multi-user.target

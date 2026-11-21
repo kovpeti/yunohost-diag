@@ -1,0 +1,15 @@
+[Unit]
+Description=Percenkénti állapotminta a YunoHost fekete dobozba
+Documentation=file:/usr/local/share/yunohost-diag/README.md
+
+[Timer]
+# boot után 20 másodperccel indul, aztán percenként
+OnBootSec=20s
+OnUnitActiveSec=1min
+AccuracySec=5s
+# Ha a gép alvó/leállt, ne próbálja utólag bepótolni
+Persistent=false
+Unit=yh-blackbox.service
+
+[Install]
+WantedBy=timers.target

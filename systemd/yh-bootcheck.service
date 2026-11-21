@@ -1,0 +1,17 @@
+[Unit]
+Description=YunoHost — tisztátlan leállás észlelése és diagnosztikai csomag mentése
+Documentation=file:/usr/local/share/yunohost-diag/README.md
+After=systemd-journald.service local-fs.target
+Requires=systemd-journald.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/yh-bootcheck.sh
+Nice=15
+IOSchedulingClass=idle
+TimeoutStartSec=300
+# A gyűjtés memóriaigénye nagy lehet, de ne fojtsa meg a rendszert
+MemoryMax=512M
+
+[Install]
+WantedBy=multi-user.target
